@@ -1,0 +1,50 @@
+OPEN-ENDED QUESTIONS
+Given a table with the following columns, please provide a query that will list the first and last login for each userId.
+
+userId
+ip
+timestamp
+userAgent
+
+
+select
+       max(timestamp) as last_login,
+       min(timestamp) as first_login
+from
+     login
+where
+      userId=1331
+
+Given the same table from above, please provide a query that will list the site traffic per month (measured in # of logins) from January 2017 through December 2017.
+
+
+select
+     year(timestamp) as year,
+     month(timestamp) as month,
+     count(*) as total
+from
+     login
+where
+     year(timestamp) = 2017
+group by
+     year,
+     month
+order by
+     year,
+     month
+
+Given the same table from above, please provide a query that will list the userId and month for any occasions where a user logged in more than 10 times in a month.
+
+
+select
+     year(timestamp) as year,
+     month(timestamp) as month,
+     userId
+from
+     login
+group by
+     userId,
+     year,
+     month
+having
+     count(*) > 10
