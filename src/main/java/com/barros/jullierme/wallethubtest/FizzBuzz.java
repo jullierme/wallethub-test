@@ -7,28 +7,31 @@ public class FizzBuzz {
 
     private static void printFizzBuzz(int start, int end) {
         IntStream.rangeClosed(start, end).boxed()
-                .map(value -> (value % 3 == 0 ? "Fizz" : "") +
-                        (value % 5 == 0 ? "Buzz" : (value % 3 == 0 ? "" : value)))
+                .map(FizzBuzz::printFizzBuzz)
                 .forEach(System.out::println);
 
     }
 
     private static String printFizzBuzz(int number) {
-        return Optional.of(number)
-                .map(value -> (value % 3 == 0 ? "Fizz" : "") + (value % 5 == 0 ? "Buzz" : ""))
-                .map(value -> (value.isEmpty() ? String.valueOf(number) : value) + " ")
-                .orElse("");
-
+        String result = (number % 3 == 0 ? "Fizz" : "") + (number % 5 == 0 ? "Buzz" : "");
+        return result.isEmpty() ? Integer.toString(number) : result;
     }
 
     private static void fizzBuzz() {
-        for (int x = 0; x < 100; x++) {
+        for (int x = 1; x <= 100; x++) {
             System.out.print(printFizzBuzz(x));
         }
     }
 
+    private static void fizzBuzz2() {
+        for (int x = 1; x <= 100; x++) {
+            String result = (x % 3 == 0 ? "Fizz" : "") + (x % 5 == 0 ? "Buzz" : "");
+            System.out.println(result.isEmpty() ? Integer.toString(x) : result);
+        }
+    }
+
     public static void main(String[] args) {
-        //fizzBuzz();
-        printFizzBuzz(0, 100);
+        System.out.println("asdfasdfasdfsadfsadf");
+        //\u000d System.out.println("asdfasdf");
     }
 }
